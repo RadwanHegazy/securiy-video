@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> تسجيل الدخول </title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    
+
+    <div class="main">
+        <img src="{% static 'images/bg.png' %}" alt="">
+
+        <div class="container">
+            <form method="POST">
+                
+                {% csrf_token %}
+
+                <h1>تسجيل الدخول </h1>
+
+                <input name="email" type="email" placeholder="البريد الالكتروني">                
+                <input name="password" type="password" placeholder="كلمة المرور">
+
+                <div class="btns">
+                    <button type="submit">تسجيل</button>
+                    <span>
+                        <p>ليس لديك حساب ؟</p>
+                        <a href="{% url 'register' %}">انشاء حساب</a>
+                    </span>
+                </div>
+
+            </form>
+        </div>
+
+        <footer>
+            <p>تم التطوير والانشاء بواسطة : رضوان جابر حجازي</p>
+        </footer>
+
+    </div>
+    
+
+</body>
+</html>

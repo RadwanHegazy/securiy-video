@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{ VideoName }} </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+
+    <div class="video">
+
+        <div class="v">
+            <img src="" alt="">
+        </div>
+        
+
+        <div class="controls">
+
+            <div class="inSeek">
+                <div id="ct">00:00:00</div>
+                <input id="seekbar" onchange="ChangeTheTime();" type="range" >
+            </div>
+            
+            <div class="vol">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" id="volume" value="100">
+                <i class="fas fa-volume-high"></i>
+            </div>
+        
+                
+            <div class="btns">
+                <button class="mins_5">-5s</button>
+                <button class="fas fa-play play" id="play"></button>
+                <button class="add_5">+5s</button>
+            </div>
+
+
+            <div class="sp">
+                <select class="speed" name="speed" id="">
+                    <option value="1">Normal</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                    <option value="4">4x</option>
+                    <option value="5">5x</option>
+                </select>
+            </div>
+
+        
+        </div>
+
+
+    </div>
+
+    <script>
+        
+        // update the volume when the slider is moved
+        volume.addEventListener("input", (e) => {
+            audio.volume = e.currentTarget.value / 100;
+        });
+
+        var audio = new Audio("{{audio}}");
+        var seTtime = document.getElementById('ct');
+        
+
+        
+        var add_5 = document.querySelector('.add_5');
+        var mins_5 = document.querySelector('.mins_5');
+
+
+        setInterval(function(){
+            console.log(audio.duration)
+            add_5.addEventListener('click',()=>{
+                audio.currentTime = audio.currentTime + ( 5 / 1000)
+            })
+    
+            mins_5.addEventListener('click',()=>{
+                audio.currentTime = audio.currentTime -  ( 5 / 1000)
+            })
+        },1)
+
+        document.querySelector('.speed').addEventListener('change',(e)=>{
+            audio.playbackRate = e.target.value;
+        })
+
+
+
+
+        var play = document.querySelector('.play');
+        var img = document.querySelector('.video img')
+        let current;
+
+        var seekbar = document.getElementById('seekbar');
+
+        seekbar.min = 0;
+        
+        
+
+
+               
+        setInterval(function(){
+            seekbar.addEventListener('change',function(){
+                audio.currentTime = seekbar.value;
+            })
+
+        
+        },1)
+        
+
+        // fires when seekbar is changed
+        function ChangeTheTime() {
+            audio.currentTime = seekbar.value;
+        }
+
+        setInterval(()=>{
+            current = audio.currentTime
+            seekbar.value = current;
+            seekbar.max = audio.duration;
+
+            var sec = audio.currentTime;
+            var h = Math.floor(sec / 3600);
+            sec = sec % 3600;
+            var min = Math.floor(sec / 60);
+            sec = Math.floor(sec % 60);
+            if (sec.toString().length < 2) sec = "0" + sec;
+            if (min.toString().length < 2) min = "0" + min;
+            var cTime = h + ":" + min + ":" + sec;
+            ct.textContent = cTime;
+
+            
+    
+            durations.forEach( duration =>{
+            
+            
+                if ( duration <= current ){
+                    
+                    let imgSrc;
+
+                    imgSrc = '/media/images/{{uuid}}/' + duration + '.jpg';
+                    img.src = imgSrc;
+                
+                }
+                
+            })
+        },100)
+        
+
+
+        function PlayVideo (){
+            
+            if (play.id == 'play') {
+                audio.play()           
+                play.id = 'pause'
+                play.className = 'fas fa-pause'
+            }else{
+                audio.pause()           
+                play.id = 'play'
+                play.className = 'fas fa-play'
+
+            }
+
+        }
+
+
+    
+        
+        play.addEventListener('click',function(){PlayVideo()})
+
+        // Change duration and audio for each video
+        var durations = "{{durations}}".split('@');
+
+    </script>
+
+</body>
+</html>

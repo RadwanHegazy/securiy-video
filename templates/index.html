@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الرئيسية </title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    
+
+    <div class="up">
+        <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+        <div class="details">
+            <h1>الفيديو الامن</h1>
+            <p>احمي الفيديو الخاص بك من التحميل الي الاجهزة</p>
+            <a href="{% url 'register' %}">لنجرب الموقع !</a>
+        </div>
+    </div>
+
+    <div class="using">
+        
+        <h2 class="title">الاستخدام</h2>
+
+        <div class="conts">
+
+            <div class="container">
+                <p class="num">1</p>
+                <h3>انشأ حسابك</h3>
+            </div>
+            
+            
+            <div class="container">
+                <p class="num">2</p>
+                <h3>ارفع الفيديو</h3>
+            </div>
+
+            <div class="container">
+                <p class="num">3</p>
+                <h3>شارك  الفيديو</h3>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>تم التطوير والانشاء بواسطة : رضوان جابر حجازي</p>
+    </footer>
+
+    
+</body>
+</html>

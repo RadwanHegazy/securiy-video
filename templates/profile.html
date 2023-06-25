@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الملف الشخصي  </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    
+
+    <!-- video  -->
+    
+    <div class="up">
+        <a href="{% url 'logout' %}" class="fas fa-door-open logout"></a>
+        <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+        <form class="details" method="POST" enctype="multipart/form-data">
+            <a href="#" id="uploadBtn">ارفع فيديو</a>
+            <input type="file" hidden id="video" accept="video/*.mp4" name="video">
+        </form>
+    </div>
+
+    <div class="video-container">
+
+
+        {% if not videos %}
+            <div class="noVideos">
+                <p>لا توجد فيديوهات حتي الان</p>
+            </div>
+        {% else %}
+            <div class="videos">
+                
+                {% for video in videos %}
+                    <div class="video">
+                        <p>{{ video.name }}</p>
+                        {% if video.isOnline %}
+                            {% if video.isDone %}
+                                <small class="online">متاح</small>
+                            {% else %}
+                                <small class="pending">جاري العمل</small>
+                            {% endif %}
+                        {% else %}
+                            <small class="offline">مغلق</small>
+                        {% endif %}
+
+                        <div class="options">
+
+                            <a href="?delete={{ video.id }}" class="fas fa-trash"></a>
+                            <a id="/WatchVideo/{{video.video_uuid}}" href="#" class="fas fa-code copy"></a>
+                            <a href="/WatchVideo/{{video.video_uuid}}" target="_blank" class="fas fa-eye"></a>
+                            {% if video.isOnline %}
+                                <a href="?status=0&id={{video.id}}" class="fas fa-pause"></a>
+                            {% else %}
+                                <a href="?status=1&id={{video.id}}" class="fas fa-play"></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+
+    </div>
+
+    <footer>
+        <p>تم التطوير والانشاء بواسطة : رضوان جابر حجازي</p>
+    </footer>
+
+
+
+    <script>
+
+        // copy code
+        document.querySelectorAll('.copy').forEach( link =>{
+            
+            link.addEventListener('click',(e)=>{
+                var iframeUrl = window.location.host + link.id
+                navigator.clipboard.writeText(iframeUrl);
+                alert('تم نسخ رابط الفريم')
+            })
+
+        })
+
+        // Upload video
+        var form = document.querySelector('.up form');
+        var uploadBtn = form.querySelector('a');
+        var video = form.querySelector('input');
+
+        uploadBtn.addEventListener('click',()=>{
+            video.click()
+        })
+
+        video.addEventListener('change',(e)=>{
+            form.submit()
+        })
+
+
+
+    </script>
+
+
+</body>
+</html>

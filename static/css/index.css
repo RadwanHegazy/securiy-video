@@ -1,0 +1,132 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.up {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.up img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    z-index: -1;
+}
+
+.details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #00000090;
+}
+
+.details h1 {
+    color: #6C63FF;
+    font-size: 3rem;
+    filter: drop-shadow(0px 3px 17px #00000016);
+    font-weight: bold;
+    font-family: Cairo,sans-serif;
+}
+
+.details p {
+    color: #6C63FF;
+    font-family: Cairo,sans-serif;
+    font-size: 1.5rem;
+}
+
+.details a {
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    background-color: #458CE0;
+    box-shadow: 0px 0px 7px #458CE0;
+    padding: 1.0rem 2.5rem;
+    border-radius: 8px;
+    font-family: Cairo,sans-serif;
+    font-weight: bold;
+}
+
+.using {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    font-family: Cairo,sans-serif;
+    padding: 1rem;
+}
+
+.using .title {
+    text-align: center;
+    color: #458CE0;
+    font-size: 2.5rem;
+}
+
+
+.conts {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.conts .container {
+    position: relative;
+    width: 250px;
+    height: 200px;
+    background-color:#3D7DC9 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 58px;
+}
+
+.conts .container .num {
+    position: absolute;
+    top: -25px;
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #458CE0;
+    border-radius: 50%;
+    color: #fff;
+
+}
+
+
+footer {
+    position: relative;
+    width: 100%; 
+    height: 50px;
+    background-color: #2F85E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Cairo,sans-serif;
+    font-weight: bold;
+}

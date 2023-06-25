@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+.video {
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 4fr 1fr;
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.video img {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    /* z-index: -1; */
+    top: 0;
+    left: 0;
+}
+
+.video .v {
+    width: 100%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-around;
+    opacity: 0.1;
+}
+
+.controls:hover {
+    opacity: 1;
+}
+
+.controls .inSeek {
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 7px;
+    gap: 7px;
+}
+
+.inSeek .ct {
+    flex: 1;
+}
+
+.inSeek input {
+    flex: 4;
+}
+
+.btns button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.vol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
